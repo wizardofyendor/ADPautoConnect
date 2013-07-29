@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_adpautoconnect" default="compile.module.adpautoconnect">
+  <dirname property="module.adpautoconnect.basedir" file="${ant.file.module_adpautoconnect}"/>
+  
+  <property name="module.jdk.home.adpautoconnect" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.adpautoconnect" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.adpautoconnect" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.adpautoconnect" value="${compiler.args}"/>
+  
+  <property name="adpautoconnect.output.dir" value="${module.adpautoconnect.basedir}/build/classes/debug"/>
+  <property name="adpautoconnect.testoutput.dir" value="${module.adpautoconnect.basedir}/build/classes/debug"/>
+  
+  <path id="adpautoconnect.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="adpautoconnect.module.production.classpath">
+    <path refid="${module.jdk.classpath.adpautoconnect}"/>
+    <path refid="library.support-v4-13.0.0.classpath"/>
+  </path>
+  
+  <path id="adpautoconnect.runtime.production.module.classpath">
+    <pathelement location="${adpautoconnect.output.dir}"/>
+    <path refid="library.support-v4-13.0.0.classpath"/>
+  </path>
+  
+  <path id="adpautoconnect.module.classpath">
+    <path refid="${module.jdk.classpath.adpautoconnect}"/>
+    <pathelement location="${adpautoconnect.output.dir}"/>
+    <path refid="library.support-v4-13.0.0.classpath"/>
+  </path>
+  
+  <path id="adpautoconnect.runtime.module.classpath">
+    <pathelement location="${adpautoconnect.output.dir}"/>
+    <path refid="library.support-v4-13.0.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.adpautoconnect">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.adpautoconnect">
+    <patternset refid="excluded.from.module.adpautoconnect"/>
+  </patternset>
+  
+  <path id="adpautoconnect.module.sourcepath">
+    <dirset dir="${module.adpautoconnect.basedir}">
+      <include name="build/source/r/debug"/>
+      <include name="build/source/aidl/debug"/>
+      <include name="build/source/rs/debug"/>
+      <include name="build/source/buildConfig/debug"/>
+      <include name="build/res/rs/debug"/>
+      <include name="src/main/java"/>
+      <include name="src/main/res"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.adpautoconnect" depends="compile.module.adpautoconnect.production,compile.module.adpautoconnect.tests" description="Compile module ADPAutoConnect"/>
+  
+  <target name="compile.module.adpautoconnect.production" depends="register.custom.compilers" description="Compile module ADPAutoConnect; production classes">
+    <mkdir dir="${adpautoconnect.output.dir}"/>
+    <javac2 destdir="${adpautoconnect.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.adpautoconnect}/javac">
+      <compilerarg line="${compiler.args.adpautoconnect}"/>
+      <bootclasspath refid="adpautoconnect.module.bootclasspath"/>
+      <classpath refid="adpautoconnect.module.production.classpath"/>
+      <src refid="adpautoconnect.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.adpautoconnect"/>
+    </javac2>
+    
+    <copy todir="${adpautoconnect.output.dir}">
+      <fileset dir="${module.adpautoconnect.basedir}/build/source/r/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/build/source/aidl/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/build/source/rs/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/build/source/buildConfig/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/build/res/rs/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.adpautoconnect.basedir}/src/main/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.adpautoconnect.tests" depends="register.custom.compilers,compile.module.adpautoconnect.production" description="compile module ADPAutoConnect; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.adpautoconnect" description="cleanup module">
+    <delete dir="${adpautoconnect.output.dir}"/>
+    <delete dir="${adpautoconnect.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ADP Auto Connect</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lblUsername">ADP User Name</string>
+    <string name="lblPassword">ADP Password</string>
+    <string name="lblSaveCreds">Save Creds</string>
+    <string name="lblClearCreds">Clear Creds</string>
+    <string name="lblClockIn">Login to ADP</string>
+    <string name="lblClockOut">Clock Out</string>
+
+</resources>

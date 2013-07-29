@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lblUsername"
+            android:id="@+id/textView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@id/txtUsername"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@id/txtUsername"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/clear_button"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lblPassword"
+            android:id="@+id/textView2"
+            android:layout_below="@id/txtUsername"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/clear_button"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@id/txtPassword"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/clear_button"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblSaveCreds"
+            android:id="@+id/save_button"
+            android:layout_alignTop="@+id/textView"
+            android:layout_alignRight="@+id/web_engine"/>
+
+    <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblClearCreds"
+            android:id="@+id/clear_button"
+            android:layout_alignBottom="@id/txtPassword"
+            android:layout_alignRight="@+id/save_button"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Connect to ADP"
+            android:id="@+id/in_button"
+            android:singleLine="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/web_engine"
+            />
+
+    <WebView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/web_engine"
+            android:layout_above="@+id/in_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/clear_button"
+            android:visibility="invisible"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log off"
+            android:id="@+id/out_button"
+            android:layout_below="@+id/web_engine"
+            android:layout_alignRight="@+id/web_engine"
+            android:enabled="false"/>
+
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/C:/Users/caleb.griffith/AndroidStudioProjects/ADPAutoConnectProject/ADPAutoConnect/src/main/res/values/dimens.xml -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- From: file:/C:/Users/caleb.griffith/AndroidStudioProjects/ADPAutoConnectProject/ADPAutoConnect/src/main/res/values/ids.xml -->
+    <item name="txtPassword" type="id"/>
+    <item name="txtUsername" type="id"/>
+    <!-- From: file:/C:/Users/caleb.griffith/AndroidStudioProjects/ADPAutoConnectProject/ADPAutoConnect/src/main/res/values/strings.xml -->
+    <string name="action_settings">Settings</string>
+    <string name="app_name">ADP Auto Connect</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lblClearCreds">Clear Creds</string>
+    <string name="lblClockIn">Login to ADP</string>
+    <string name="lblClockOut">Clock Out</string>
+    <string name="lblPassword">ADP Password</string>
+    <string name="lblSaveCreds">Save Creds</string>
+    <string name="lblUsername">ADP User Name</string>
+    <!-- From: file:/C:/Users/caleb.griffith/AndroidStudioProjects/ADPAutoConnectProject/ADPAutoConnect/src/main/res/values/styles.xml -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+</resources>
