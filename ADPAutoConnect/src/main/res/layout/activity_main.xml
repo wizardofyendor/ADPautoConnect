@@ -70,29 +70,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Connect to ADP"
-            android:id="@+id/in_button"
+            android:id="@+id/connect_button"
             android:singleLine="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/web_engine"
-            />
+            android:layout_alignLeft="@+id/web_engine"/>
 
     <WebView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/web_engine"
-            android:layout_above="@+id/in_button"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/clear_button"
-            android:visibility="invisible"/>
+            android:visibility="invisible"
+            android:layout_above="@+id/connect_button"
+            android:layout_alignTop="@+id/textView"/>
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Log off"
-            android:id="@+id/out_button"
-            android:layout_below="@+id/web_engine"
-            android:layout_alignRight="@+id/web_engine"
-            android:enabled="false"/>
+            android:id="@+id/logout_button"
+            android:enabled="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/clear_button"/>
 
 </RelativeLayout>

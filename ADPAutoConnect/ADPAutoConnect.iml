@@ -15,7 +15,7 @@
     </facet>
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":ADPAutoConnect" />
+        <option name="GRADLE_PROJECT_PATH" value=":ADPautoConnect" />
       </configuration>
     </facet>
   </component>

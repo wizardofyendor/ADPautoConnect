@@ -2,39 +2,39 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res" >
+        <source path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res" >
             <file
                 name="ic_launcher"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\drawable-hdpi\ic_launcher.png"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\drawable-hdpi\ic_launcher.png"
                 qualifiers="hdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\drawable-mdpi\ic_launcher.png"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\drawable-mdpi\ic_launcher.png"
                 qualifiers="mdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\drawable-xhdpi\ic_launcher.png"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\drawable-xhdpi\ic_launcher.png"
                 qualifiers="xhdpi"
                 type="drawable" />
             <file
                 name="ic_launcher"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\drawable-xxhdpi\ic_launcher.png"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\drawable-xxhdpi\ic_launcher.png"
                 qualifiers="xxhdpi"
                 type="drawable" />
             <file
                 name="activity_main"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\layout\activity_main.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\layout\activity_main.xml"
                 qualifiers=""
                 type="layout" />
             <file
                 name="main"
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\menu\main.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\menu\main.xml"
                 qualifiers=""
                 type="menu" />
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values\dimens.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values\dimens.xml"
                 qualifiers="" >
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
@@ -42,29 +42,39 @@
                 </dimen>
             </file>
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values\strings.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values\ids.xml"
+                qualifiers="" >
+                <item
+                    name="txtUsername"
+                    type="id"/>
+                <item
+                    name="txtPassword"
+                    type="id"/>
+            </file>
+            <file
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values\strings.xml"
                 qualifiers="" >
                 <string name="lblClearCreds" >Clear Creds
                 </string>
                 <string name="action_settings" >Settings
                 </string>
-                <string name="lblClockIn" >Login to ADP
-                </string>
                 <string name="lblUsername" >ADP User Name
+                </string>
+                <string name="lblClockIn" >Login to ADP
                 </string>
                 <string name="app_name" >ADP Auto Connect
                 </string>
                 <string name="lblClockOut" >Clock Out
                 </string>
-                <string name="lblSaveCreds" >Save Creds
-                </string>
                 <string name="lblPassword" >ADP Password
+                </string>
+                <string name="lblSaveCreds" >Save Creds
                 </string>
                 <string name="hello_world" >Hello world!
                 </string>
             </file>
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values\styles.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values\styles.xml"
                 qualifiers="" >
 
                 <style
@@ -86,16 +96,16 @@
                 </style>
             </file>
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values-sw600dp\dimens.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values-sw600dp\dimens.xml"
                 qualifiers="sw600dp" />
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values-sw720dp-land\dimens.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values-sw720dp-land\dimens.xml"
                 qualifiers="sw720dp-land" >
                 <dimen name="activity_horizontal_margin" >128dp
                 </dimen>
             </file>
             <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values-v11\styles.xml"
+                path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\main\res\values-v11\styles.xml"
                 qualifiers="v11" >
 
                 <style
@@ -105,21 +115,11 @@
                     <!-- API 11 theme customizations can go here. -->
                 </style>
             </file>
-            <file
-                path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\main\res\values\ids.xml"
-                qualifiers="" >
-                <item
-                    name="txtUsername"
-                    type="id"/>
-                <item
-                    name="txtPassword"
-                    type="id"/>
-            </file>
         </source>
-        <source path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\rs\debug" />
+        <source path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\rs\debug" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\src\debug\res" />
+        <source path="C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\src\debug\res" />
     </dataSet>
 
 </merger>

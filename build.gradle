@@ -1,1 +1,2 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+//compile files('libs/android-support-v4.jar', 'libs/GoogleAdMobAdsSdk-6.4.1.jar')

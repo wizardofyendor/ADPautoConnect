@@ -1,12 +1,12 @@
 # incremental data. DO NOT EDIT.
 # format is <lastModified> <length> <SHA-1> <path>
 # Encoding is UTF-8
-1374787730752 374 f7cdb9fc6a049eb4c5150edf9f8c1a88d5576083 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\menu\main.xml
-1374787730785 2620 fd8fd47b6894280df07165aae53ce1a5daf37567 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\drawable-mdpi\ic_launcher.png
-1374787855633 1773 4cabc2d0dabb699000dfa44ba1de1c021eb96082 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\values\values.xml
-1374787730792 283 68bd248a2e28eb46edd159411b0b0fda123d8ce1 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\values-sw720dp-land\values.xml
-1374787730825 6258 4fa2c10384f66bed1ed45cc72ad8c9c7aff6206c C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\drawable-xhdpi\ic_launcher.png
-1374787730788 348 45631ff1a3f0e6a573bb5e28ac85848995568a4a C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\values-v11\values.xml
-1374787730862 11126 93785c5dda6595b2b582f46cba234b6d4a7972fc C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\drawable-xxhdpi\ic_launcher.png
-1374787730801 4514 960d38d133328628da14f6f70179b5aa7c22ccc0 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\drawable-hdpi\ic_launcher.png
-1374851062559 4082 b440072afccb3238ba516bd2be7bb7498ba47cd7 C:\Users\caleb.griffith\AndroidStudioProjects\ADPAutoConnectProject\ADPAutoConnect\build\res\all\debug\layout\activity_main.xml
+1375231133059 1737 c382a8f62f6c71b231cf2635123858576cb3850f C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\values\values.xml
+1375231133039 365 a185787289f924542bd1a45a0867a653ba3d28c5 C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\menu\main.xml
+1375278449647 3854 8af1d3be35d0a0c2f1ac5cfa84aa31badf33ce6f C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\drawable-mdpi\ic_launcher.png
+1375231133071 274 b9ea16e6f1ce2207d3039d07827a0f12801d39fd C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\values-sw720dp-land\values.xml
+1375278449729 25075 573b2bc22ef712d77f610ee15ab4239f2f987488 C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\drawable-xxhdpi\ic_launcher.png
+1375278449685 11870 bf895a26dc46da0ad7d935c2e1706646efec8f57 C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\drawable-xhdpi\ic_launcher.png
+1375231133042 4075 a1650806cc49acec555836c04adbeefbc4008d56 C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\layout\activity_main.xml
+1375278449668 7620 35008e7216643a07b3c76a84f09dea774cd1729e C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\drawable-hdpi\ic_launcher.png
+1375231133063 339 532106c23bef4c4de47e70e70277b3d3ac701039 C:\Users\Caleb\AndroidStudioProjects\ADPautoConnectProject\ADPautoConnect\build\res\all\debug\values-v11\values.xml
