@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ADPautoConnect/ADPautoConnect.iml" filepath="$PROJECT_DIR$/ADPautoConnect/ADPautoConnect.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ADPautoConnectProject.iml" filepath="$PROJECT_DIR$/ADPautoConnectProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ADPautoConnect/src/main/ADPautoConnect.iml" filepath="$PROJECT_DIR$/ADPautoConnect/src/main/ADPautoConnect.iml" />
+      <module fileurl="file://C:/Users/Users.iml" filepath="C:/Users/Users.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ADPautoConnect/build/source/buildConfig/buildConfig.iml" filepath="$PROJECT_DIR$/ADPautoConnect/build/source/buildConfig/buildConfig.iml" />
     </modules>
   </component>
 </project>

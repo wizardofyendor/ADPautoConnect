@@ -1,13 +1,19 @@
 package com.wizard.adpautoconnect;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -24,14 +30,12 @@ public class MainActivity extends Activity implements OnClickListener {
     // Define variables
     private EditText mInputUserName;
     private EditText mInputPassword;
-    private Button mLogoutButton;
     private Button mConnectButton;
     private boolean mJobDone = false;
+    private boolean mFailed = false;
     private WebView engine;
-//    private ProgressDialog pd;
-    private String resultTitle;
+    private boolean mConnected = false;
 
-    // Map variables to fields, and load defaults
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Initiate GUI
@@ -42,29 +46,86 @@ public class MainActivity extends Activity implements OnClickListener {
         // Map variables to GUI objects
         mInputUserName = (EditText)findViewById(R.id.txtUsername);
         mInputPassword = (EditText) findViewById(R.id.txtPassword);
-        Button mSaveButton = (Button) findViewById(R.id.save_button);
-        Button mClearButton = (Button) findViewById(R.id.clear_button);
         mConnectButton = (Button) findViewById(R.id.connect_button);
-        mLogoutButton = (Button) findViewById(R.id.logout_button);
         engine = (WebView) findViewById(R.id.web_engine);
-//        pd = new ProgressDialog(this);
 
         // Map variables to OnClick events
-        mSaveButton.setOnClickListener(this);
-        mClearButton.setOnClickListener(this);
         mConnectButton.setOnClickListener(this);
-        mLogoutButton.setOnClickListener(this);
 
         // Load saved preferences
         funcLoadPresences();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // Check if the key event was the Back button and if there's history
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && engine.canGoBack()) {
+            engine.goBack();
+            return true;
+        }
+        // If it wasn't the Back key or there's no web page history, bubble up to the default
+        // system behavior (probably exit the activity)
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onPause(){
+        if(mConnected){
+            funcCleanUp();
+            engine.clearHistory();
+            engine.clearCache(true);
+            engine.setVisibility(View.INVISIBLE);
+            mConnectButton.setEnabled(true);
+            mConnected = false;
+        }
+        super.onPause();
+    }
+
+    // Menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    public void onGroupItemClick(MenuItem item) {
+        // One of the group items (using the onClick attribute) was clicked
+        // The item parameter passed here indicates which item it is
+        // All other menu item clicks are handled by onOptionsItemSelected()
+        switch (item.getItemId()){
+            case R.id.clear_creds:
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                funcClearAllPreferences();
+                                Toast.makeText(MainActivity.this, "Credentials Cleared", Toast.LENGTH_SHORT).show();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Clear Credentials");
+                builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+                break;
+        }
     }
 
     // Specify onClick actions
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.save_button:
-                // 'Save Creds' button pressed
+            case R.id.connect_button:
+                // 'Connect to ADP' button pressed
                 // Save current username and password.
                 // first check for nulls
                 if(mInputUserName.getText().toString().trim().length() > 0 && mInputPassword.getText().toString().trim().length() > 0)
@@ -74,25 +135,18 @@ public class MainActivity extends Activity implements OnClickListener {
                         // Save the creds
                         funcSavePreferences("ADPUser", mInputUserName.getText().toString());
                         funcSavePreferences("ADPPass", mInputPassword.getText().toString());
-                        Toast.makeText(this, "Credentials Saved", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(this, "Credentials Saved", Toast.LENGTH_LONG).show();
                     } else {
                         // Reject the creds
-                        Toast.makeText(this, "Username must contain an '@' separating name and company name", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Username must contain an '@' separating user and company name", Toast.LENGTH_LONG).show();
+                        break;
                     }
                 }
                 else {
                     // Reject the creds
                     Toast.makeText(this, "Please enter credentials first", Toast.LENGTH_LONG).show();
+                    break;
                 }
-                break;
-            case R.id.clear_button:
-                // 'Clear Creds' button pressed
-                // Blank all credentials
-                funcClearAllPreferences();
-                Toast.makeText(this, "Removed Credentials", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.connect_button:
-                // 'Connect to ADP' button pressed
 
                 // Verify connectivity
                 if(!isOnline()){
@@ -102,8 +156,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
                 // Create a new thread to handle the progress dialog.
                 AsyncTask<Void, Void, Void> taskConnect = new AsyncTask<Void, Void, Void>() {
-                    private ProgressDialog pd;
                     // Define progress dialog
+                    private ProgressDialog pd;
+
                     @Override
                     protected void onPreExecute() {
                         pd = new ProgressDialog(MainActivity.this);
@@ -112,6 +167,8 @@ public class MainActivity extends Activity implements OnClickListener {
                         pd.setCancelable(false);
                         pd.setIndeterminate(true);
                         pd.show();
+                        // Call connect to ADP function
+                        mConnected = true;
                         funcWebConnectADP();
                     }
 
@@ -123,85 +180,34 @@ public class MainActivity extends Activity implements OnClickListener {
                         try {
                             while(!mJobDone)
                             {
-                            Thread.sleep(500);
+                                Thread.sleep(500);
                             }
 
                         } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
+                            System.err.println("Name of Your Application, Error: " + e.getLocalizedMessage());
                         }
                         return null;
                     }
-                    // After funcWebConnectADP has completed, dismiss the progress dialog
+
                     @Override
                     protected void onPostExecute(Void result) {
+                        // After funcWebConnectADP has completed, dismiss the progress dialog
                         pd.dismiss();
-                        //pd.hide();
-                        mJobDone = true;
-                        engine.setVisibility(View.VISIBLE);
-                        //if(resultTitle == "ADP ezLaborManager - Home")
-                        //{
-                            mConnectButton.setEnabled(false);
-                            mLogoutButton.setEnabled(true);
-                        //}
 
-                        //Toast.makeText(MainActivity.this, resultTitle, Toast.LENGTH_LONG).show();
+                        mJobDone = true;
+                        if(mFailed){
+                            Toast.makeText(MainActivity.this, "Login failed. Check username, password, and network connectivity", Toast.LENGTH_LONG).show();
+                            mConnected = false;
+                        } else {
+                            engine.setVisibility(View.VISIBLE);
+                            mConnectButton.setEnabled(false);
+                            mConnected = true;
+                        }
+                        mFailed = false;
                     }
                 };
                 taskConnect.execute((Void[]) null);
 
-                break;
-            case R.id.logout_button:
-                // Logout button pressed
-                // Run funcCleanUp, and pass 'true' so it knows it was from a button press
-                //funcCleanUp(true);
-                // Create a new thread to handle the progress dialog.
-                AsyncTask<Void, Void, Void> taskLogout = new AsyncTask<Void, Void, Void>() {
-                    private ProgressDialog pd;
-                    // Define progress dialog
-                    @Override
-                    protected void onPreExecute() {
-                        pd = new ProgressDialog(MainActivity.this);
-                        pd.setTitle("Logging out...");
-                        pd.setMessage("Please wait.");
-                        pd.setCancelable(false);
-                        pd.setIndeterminate(true);
-                        pd.show();
-                        engine.setVisibility(View.INVISIBLE);
-                        funcCleanUp();
-                    }
-
-                    @Override
-                    protected Void doInBackground(Void... arg0) {
-                        // run the funcWebConnectADP function and check every 0.5 seconds to see if
-                        // it has completed
-                        mJobDone = false;
-                        try {
-                            //funcCleanUp(true);
-                            while(!mJobDone)
-                            {
-                                Thread.sleep(500);
-                            }
-                        } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-                    // After funcWebConnectADP has completed, dismiss the progress dialog
-                    @Override
-                    protected void onPostExecute(Void result) {
-                        pd.dismiss();
-                        //pd.hide();
-                        mJobDone = true;
-                        mConnectButton.setEnabled(true);
-                        mLogoutButton.setEnabled(false);
-
-                        //Toast.makeText(MainActivity.this, resultTitle, Toast.LENGTH_LONG).show();
-                        Toast.makeText(MainActivity.this, "Logout successful", Toast.LENGTH_LONG).show();
-                    }
-                };
-                taskLogout.execute((Void[]) null);
                 break;
         }
     }
@@ -240,12 +246,13 @@ public class MainActivity extends Activity implements OnClickListener {
     private void funcWebConnectADP() {
         // Split username and company name
         String[] separated = mInputUserName.getText().toString().split("@");
+
         // Map 'engine' to the WebView object, and enable java script
-        //final WebView engine = (WebView) findViewById(R.id.web_engine);
         WebSettings webSettings = engine.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadsImagesAutomatically(true);
         engine.setVisibility(View.INVISIBLE);
+
         // Map web calls from this application to the WebView object as a web client
         engine.setWebViewClient(new WebViewClient() {
             // Pass credentials from text boxes to page when requested.
@@ -254,6 +261,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
                 handler.proceed(mInputUserName.getText().toString(), mInputPassword.getText().toString());
             }
+
             // Once the page has finished loading call the login function
             @Override
             public void onPageFinished(final WebView view, String url) {
@@ -263,11 +271,13 @@ public class MainActivity extends Activity implements OnClickListener {
                 {
                     // Enable the WebView and logout buttons, and set job to done.
                     mJobDone = true;
+                    mFailed = false;
+                    return;
                 } else {
-                    Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
                     mJobDone = true;
+                    mFailed = true;
                 }
-                resultTitle = view.getTitle();
             }
         });
         engine.loadUrl("https://ezlmisiappdc1f.adp.com/ezLaborManagerNet/IFrameRedir.aspx?pg=ECW3FE52&isiclientid=" + separated[1]);
@@ -275,37 +285,36 @@ public class MainActivity extends Activity implements OnClickListener {
 
     // Logout of ADP and clean up after WebView
     private void funcCleanUp() {
-        //final WebView engine = (WebView) findViewById(R.id.web_engine);
         engine.setWebViewClient(new WebViewClient() {
+            // Pass credentials from text boxes to page when requested.
+            @Override
+            public void onReceivedHttpAuthRequest(WebView view, HttpAuthHandler handler, String host, String realm) {
+
+                handler.proceed(mInputUserName.getText().toString(), mInputPassword.getText().toString());
+            }
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if(view.getTitle().contains("Portal Logout")){
+                if(view.getTitle().contains("Portal Logout") || view.getTitle().contains("Portal Login")){
                     mJobDone = true;
-                    engine.clearCache(true);
+                    mFailed = false;
+                    return;
+                } else {
+                    mJobDone = true;
+                    mFailed = true;
                 }
-                resultTitle = view.getTitle();
             }
         });
         engine.loadUrl("https://portal.adp.com/wps/myportal/sitemap/Employee/Home/Welcome/!ut/p/c5/04_SB8K8xLLM9MSSzPy8xBz9CP0os3ivQHcjDy9vA3d_M1dLA8-wsMDgYHN3Q2cjc30_j_zcVP2CbEdFACV36N8!/dl3/d3/L3dDb1ZJQSEhL3dPb0JKTnNBLzREMGo5ZWtBU0VFIS9IY0JGMjU1MTUwMDAyLzEzNzUyL2xv/");
     }
 
+    // Check online connectivity
     public boolean isOnline(){
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if(netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
-    }
-
-    // If app is killed perform cleanup
-    @Override
-    public void onDestroy()
-    {
-        super.onDestroy();
-        //funcCleanUp(false);
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
 

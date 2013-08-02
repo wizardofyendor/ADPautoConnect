@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group"
+           android:showAsAction="always">
+        <item android:id="@+id/clear_creds"
+              android:onClick="onGroupItemClick"
+              android:title="@string/group_item1" />
+    </group>
+</menu>

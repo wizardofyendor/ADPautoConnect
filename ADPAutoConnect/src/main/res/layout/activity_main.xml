@@ -16,17 +16,19 @@
             android:id="@+id/textView"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            android:textIsSelectable="false"
             android:layout_alignRight="@id/txtUsername"/>
 
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@id/txtUsername"
             android:layout_below="@+id/textView"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/clear_button"/>
+            android:layout_alignRight="@+id/web_engine"
+            android:textIsSelectable="false"
+            android:inputType="textNoSuggestions"/>
 
     <TextView
             android:layout_width="wrap_content"
@@ -36,7 +38,8 @@
             android:id="@+id/textView2"
             android:layout_below="@id/txtUsername"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/clear_button"/>
+            android:textIsSelectable="false"
+            android:layout_alignRight="@+id/web_engine"/>
 
     <EditText
             android:layout_width="wrap_content"
@@ -46,34 +49,17 @@
             android:id="@id/txtPassword"
             android:layout_below="@+id/textView2"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/clear_button"/>
-
-    <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblSaveCreds"
-            android:id="@+id/save_button"
-            android:layout_alignTop="@+id/textView"
+            android:textIsSelectable="false"
             android:layout_alignRight="@+id/web_engine"/>
 
     <Button
-            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblClearCreds"
-            android:id="@+id/clear_button"
-            android:layout_alignBottom="@id/txtPassword"
-            android:layout_alignRight="@+id/save_button"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Connect to ADP"
+            android:text="@string/lblConnect"
             android:id="@+id/connect_button"
             android:singleLine="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/web_engine"/>
+            android:layout_centerHorizontal="true"/>
 
     <WebView
             android:layout_width="wrap_content"
@@ -83,15 +69,6 @@
             android:layout_alignParentRight="true"
             android:visibility="invisible"
             android:layout_above="@+id/connect_button"
-            android:layout_alignTop="@+id/textView"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log off"
-            android:id="@+id/logout_button"
-            android:enabled="false"
-            android:layout_alignParentBottom="true"
-            android:layout_alignRight="@+id/clear_button"/>
+            android:layout_alignParentTop="true"/>
 
 </RelativeLayout>
